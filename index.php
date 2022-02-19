@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1)
+declare(strict_types=1);
 
 
 $towers = [
@@ -10,8 +10,9 @@ $towers = [
 
 $towerCheck = [1, 2, 3];
 
-$initialTower = (readline("Откуда двигаем: ") - 1);
-$endTower = readline("Куда двигаем: ");
+
+//$initialTower = readline("Откуда двигаем: ");
+//$endTower = readline("Куда двигаем: ");
 
 
 
@@ -26,21 +27,17 @@ function isNumber(string $towerNum): bool
 
 function translateCoordinate(string $towerNum): int 
 {
-	(int)$towrNum;
+	$towerNum = (int)$towerNum;
 	$towerNum--;
 	return $towerNum;
 }
 
-function checkTower(array $towers, int $towerNum): bool
+function isValidTower(array $towers, string $index): bool
 {
-	if ($towerNum > (count($towers[$towerNum]) - 1) || $towerNum < 0) {
-		return false;
-	}
-
-	return true;
+	return ($index < count($towers) && $index >= 0);
 }
 
-function  accordWithRules(array $towers, int $initialTower, int $endTower): bool
+function  accordWithRules(array $towers, $initialTower, int $endTower): bool
 {
 	if ($towers[$initialTower][0] > $towers[$endTower][0]) {
 		return false;
@@ -51,24 +48,18 @@ function  accordWithRules(array $towers, int $initialTower, int $endTower): bool
 
 function move(array $towers, int $initialTower, int $endTower): array 
 {
-	array_unshift($towers[endTower]) = array_shift($towers[$initialTower])
+	$ring = array_shift($towers[$initialTower]);
+	array_unshift($towers[$endTower], $ring);
 
 	return $towers;
 }
 
-function gameOver(array $towers, array $towerCheck): bool
+function isGameOver(array $towers, array $towerCheck): bool
 {
-	$lastTower = (count($towers) - 1);
-	$last
-	if (count($towers[$lastTower]) === count($towerCheck)) {
+	return $towers === [[], [], [1, 2, 3]]
 		echo "Вах, ты сложил эти Шанхай... ой то есть Ханойские башни, вай малаца, да?"
-		return true;
-	}
-
-	return false;
 }
 
 
-
-
+move($towers, 0, 1);
 
