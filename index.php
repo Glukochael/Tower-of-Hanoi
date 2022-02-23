@@ -11,6 +11,7 @@ $towers = [
 function getUserInput(array $towers): array
 {
 	$from = readline("Откуда двигаем: ");
+    //я тут
 	$from = CorrectUserInput($towers, $from);
 	
 	$to = readline("Куда двигаем: ");
