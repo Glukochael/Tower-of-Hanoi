@@ -106,14 +106,15 @@ function newGame(array $towers): void
 function playImage(array $towers): void
 {
 	$figures = [
-	1 => "  /\\  ",
-	2 => " /||\\ ",
-	3 => "/||||\\",
+	1 => "  /|\\  ",
+	2 => " /|||\\ ",
+	3 => "/|||||\\",
 	];
-	$emptyPosition = "      ";
+	$emptyPosition = "       ";
 	$upLvl = "";
 	$middleLvl = "";
 	$downLvl = "";
+	$numLvl = "   1   " . "   2   " . "   3   ";
 
 	foreach ($towers as $tower) {
 		if (count($tower) === 3) {
@@ -151,30 +152,31 @@ function playImage(array $towers): void
 		}
 	}
 	
-	echo $upLvl . "\n" . $middleLvl . "\n" . $downLvl . "\n";
+	echo $upLvl . "\n" . $middleLvl . "\n" . $downLvl . "\n" . $numLvl . "\n";
 }
 
 function runGame(array $towers)
 {
 	$finalPosition = $towers[0];
 	$numMove = 1;
+	echo "		Х А Н О Й С К И Е   Б А Ш Н И \n Перед тобой 3 башни, от тебя требуется передвинуть башню на 3 позицию. Удачи!.\n \n";
 	playImage($towers);
 
 	while (isGameOver($towers, $finalPosition) === false) {
+		echo "Номер хода: " . $numMove . "\n";
 		$coordinates = getUserInput($towers);
 		$from = translateCoordinate($coordinates[0]);
 		$to = translateCoordinate($coordinates[1]);
 		if (accordWithRules($towers, $from, $to) === true) {
 			$towers = move($towers, $from, $to);
 			$numMove++;
-			echo "Номер хода: " . $numMove . "\n";
 		}
 		else {
 			echo "Разрешено передвигать только меньший диск на больший \n";
 		}
 		playImage($towers);
 
-		if ($numMove > 7) {
+		if ($numMove > 8) {
 			echo "Ты не управился в 7 ходов. \n";
 			newGame($towers);
 		}
